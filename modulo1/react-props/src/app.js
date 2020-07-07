@@ -8,12 +8,13 @@ import Square from './square'
 class App extends React.Component {
   render () {
     return (
-      <div className='container'>
-        {['blue', 'black', 'green'].map((currentColor) => (
-          // serve para quanto iterar element, pela key o react sabe qual element esta sendo renderizado
-          // e qual element está sendo modificado
-          <Square key={currentColor} color={currentColor} />
-        ))}
+      <div
+        className='container'
+        onClick={function (e) {
+        alert('clicado')
+      }}
+      >
+        <Square />
       </div>
     )
   }
