@@ -1,12 +1,12 @@
 'use strict'
 
-var React = require('react');
-var ReactDOM = require('react-dom');
+// es2015
+import Title from './app';
 
-var Title = require('./app');
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 ReactDOM.render(
   React.createElement(Title),
   document.querySelector('[data-js="app"]')
 )
-
