@@ -1,15 +1,19 @@
 'use strict'
 
 import React from 'react'
-import Title from './title'
+import Square from './square'
 
 // para renderizar é necessario extender a classe
 // as propriedade sao iguais das functions
 class App extends React.Component {
-  reunder () {
+  render () {
     return (
       <div className='container'>
-        <Title name='pai' />
+        {['blue', 'black', 'green'].map((currentColor) => (
+          // serve para quanto iterar element, pela key o react sabe qual element esta sendo renderizado
+          // e qual element está sendo modificado
+          <Square key={currentColor} color={currentColor} />
+        ))}
       </div>
     )
   }
