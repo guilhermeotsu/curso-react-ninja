@@ -3,14 +3,16 @@
 import React from 'react'
 import Title from './title'
 
-const App = React.createClass({
-  render: function () {
+// para renderizar é necessario extender a classe
+// as propriedade sao iguais das functions
+class App extends React.Component {
+  reunder () {
     return (
       <div className='container'>
-        <Title name='otsuu' lastname={0} />
+        <Title name='pai' />
       </div>
     )
   }
-})
+}
 
 export default App

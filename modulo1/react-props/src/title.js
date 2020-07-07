@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-const Title = ({ name, lastname}) => {
+const Title = ({ name, lastname }) => {
   return (
     <h1>pai ta chatoooo {`${name} ${lastname}`} </h1>
   )
