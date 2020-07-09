@@ -11,7 +11,7 @@ class Timer extends React.Component {
     this.intervalTimer
   }
 
-  // componente montou na tela
+  // componente montou na tela (Inicializa o contador)
   componentDidMount () {
     this.invervalTimer = setInterval(() => {
       this.setState({
@@ -25,17 +25,30 @@ class Timer extends React.Component {
     clearInterval(this.invervalTimer)
   }
 
+  // proximas propriedade que serao passadas para o componente
   componentWillReceiveProps (nextProps) {
-    // proximas propriedade que serao passadas para o componente
     console.log('componentWillReceiveProps', this.props, nextProps)
   }
 
+  // o metodo é executado sempre que novas props sao mandadas para o componente
+  // aqui se pode verificar se o proximo valor do componente for igual ao anterior (atual)
+  shouldComponentUpdate (nextProps, nextState) {
+    console.log('shouldComponentUpdate', this.state, nextState)
+    return this.state.time !== nextState.time
+  }
+
+  // essa funçao é chamada um pouco antes do componente ser renderizado
+  componentWillUpdate (nextProps, nextState) {
+    console.log('shouldComponentUpdate', this.state, nextState)
+  }
+
+  // método é executado após a renderizaçao do componente com o estado/props atualizados
+  componentDidUpdate (prevProps, prevState) {
+    console.log('componentDidupdate', this.props, prevProps)
+  }
+
   render () {
-    return (
-      <div>
-        Timer: {this.state.time}
-      </div>
-    )
+    return <div>Timer: {this.state.time}</div>
   }
 }
 

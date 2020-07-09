@@ -5,7 +5,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 
-const renderApp = (NextApp) => {
+const renderApp = NextApp => {
   ReactDOM.render(
     <AppContainer>
       <NextApp />

@@ -24,22 +24,21 @@ class App extends Component {
     console.log('componenteDidMount')
   }
 
-  componentWillReceiveProps (nextProps) {
-    // proximas propriedade que serao passadas para o componente
-    console.log('componentWillReceiveProps', this.state.time, nextProps)
-  }
-
   render () {
     console.log('render')
 
     return (
       <div>
         <Timer time={this.state.time} />
-        <button onClick={() => {
-          this.setState({
-            time: this.state.time + 10
-          })
-        }}> Add + 10 </button>
+        <button
+          onClick={() => {
+            this.setState({
+              time: this.state.time + 10
+            })
+          }}
+        >
+          Add + 10
+        </button>
       </div>
     )
   }
