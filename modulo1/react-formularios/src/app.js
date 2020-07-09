@@ -14,10 +14,13 @@ import React from 'react'
 // basicamente usar defaultValue e value com onChange
 
 // onChange dentro do form, voce tem controle a todos os elementos do form
+
+// setState é assincrono, que recebe como segundo parametro uma funçao de callback (caso precise)
 class App extends React.Component {
   constructor () {
     super()
     this.state = {
+      mostraDiv: false,
       selectOption: '1',
       checked: false,
       value: 'init value'
@@ -63,6 +66,10 @@ class App extends React.Component {
             value={this.state.selectOption}
             onChange={e => {
               this.setState({ selectOption: e.target.value })
+            }, () => {
+              this.setState({
+                mostraDiv: this.state.selectOption
+              })
             }}>
             <option value='1'>1</option>
             <option value='2'>2</option>
@@ -73,6 +80,23 @@ class App extends React.Component {
 
           <button type='submit'>submit</button>
         </form>
+
+        <div> 
+          <input 
+            type='checkbox' 
+            value={this.state.checked}
+            onChange={() => {
+            this.setState({
+              checked: !this.state.checked
+            })    
+          }} /> mostra a div dos cria
+          {
+            this.state.checked && 
+            <div>
+              div dos cria
+            </div>
+          }
+        </div>
       </div>
     )
   }
