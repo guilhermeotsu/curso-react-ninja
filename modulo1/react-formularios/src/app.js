@@ -10,6 +10,8 @@ import React from 'react'
 // input --> Propriedade value
 // checkbox --> Propriedade checked
 // radio --> Propriedade value (sao controlados pelo nome)
+
+// basicamente usar defaultValue e value com onChange
 class App extends React.Component {
   constructor () {
     super()
@@ -53,6 +55,8 @@ class App extends React.Component {
             <option value='2'>2</option>
             <option value='3'>3</option>
           </select>
+          
+          <textarea value='default value text area' />
         </form>
       </div>
     )
