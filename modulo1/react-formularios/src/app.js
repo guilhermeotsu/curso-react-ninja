@@ -14,6 +14,7 @@ class App extends React.Component {
   constructor () {
     super()
     this.state = {
+      selectOption: '1',
       checked: false,
       value: 'init value'
     }
@@ -31,7 +32,6 @@ class App extends React.Component {
               })
             }}
           />
-
           <label>
             <input
               type='checkbox'
@@ -42,9 +42,17 @@ class App extends React.Component {
             />
             checkbox
           </label>
-
           <input type='radio' name='rd' value='1' defaultChecked /> Radio 1
           <input type='radio' name='rd' value='2' /> Radio 2
+          <select 
+            value={this.state.selectOption}
+            onChange={e => {
+              this.setState({ selectOption: e.target.value })
+            }}>
+            <option value='1'>1</option>
+            <option value='2'>2</option>
+            <option value='3'>3</option>
+          </select>
         </form>
       </div>
     )
