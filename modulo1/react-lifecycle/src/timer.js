@@ -25,6 +25,11 @@ class Timer extends React.Component {
     clearInterval(this.invervalTimer)
   }
 
+  componentWillReceiveProps (nextProps) {
+    // proximas propriedade que serao passadas para o componente
+    console.log('componentWillReceiveProps', this.props, nextProps)
+  }
+
   render () {
     return (
       <div>

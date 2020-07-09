@@ -10,6 +10,7 @@ class App extends Component {
     super()
     console.log('constructor')
     this.state = {
+      time: 0,
       showTimer: true
     }
   }
@@ -23,18 +24,22 @@ class App extends Component {
     console.log('componenteDidMount')
   }
 
+  componentWillReceiveProps (nextProps) {
+    // proximas propriedade que serao passadas para o componente
+    console.log('componentWillReceiveProps', this.state.time, nextProps)
+  }
+
   render () {
     console.log('render')
 
     return (
       <div>
-        {this.state.showTimer && <Timer />}
+        <Timer time={this.state.time} />
         <button onClick={() => {
           this.setState({
-            showTimer: !this.state.showTimer
+            time: this.state.time + 10
           })
-        }}
-        > Show / Hide Timer</button>
+        }}> Add + 10 </button>
       </div>
     )
   }
