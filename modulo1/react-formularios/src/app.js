@@ -12,6 +12,8 @@ import React from 'react'
 // radio --> Propriedade value (sao controlados pelo nome)
 
 // basicamente usar defaultValue e value com onChange
+
+// onChange dentro do form, voce tem controle a todos os elementos do form
 class App extends React.Component {
   constructor () {
     super()
@@ -24,8 +26,19 @@ class App extends React.Component {
   render () {
     return (
       <div>
-        <form>
+        <form 
+          onSubmit={e => {
+            e.preventDefault()
+            console.log('event submit form:: ', e)
+          }}
+
+          onChange={e => {
+            console.log('name do campo:: ', e.target.name)
+            console.log('value do campo:: ', e.target.value)
+          }}
+        >
           <input
+            name='inputdocria'
             type='text'
             value={this.state.value}
             onChange={e => {
@@ -56,7 +69,9 @@ class App extends React.Component {
             <option value='3'>3</option>
           </select>
           
-          <textarea value='default value text area' />
+          <textarea name='textAreaDoCria' defaultValue='default value text area' />
+
+          <button type='submit'>submit</button>
         </form>
       </div>
     )
