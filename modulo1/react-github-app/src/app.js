@@ -1,37 +1,22 @@
 'use strict'
 
-import React from 'react'
-import Search from './components/search'
-import UserInfo from './components/user-info'
-import Actions from './components/actions'
-import Repos from './components/repos'
+import React, { Component } from 'react'
+import AppContent from './components/app-content'
 
-const App = () => (
-  <div className='app'>
-    <Search />
-    <UserInfo />
-    <Actions />
-    <Repos
-      className='repos'
-      title='Repositório'
-      repos={[
-        {
-          link: '#',
-          name: 'Nome do repositório'
-        }
-      ]}
-    />
-    <Repos
-      className='starred'
-      title='Favoritos'
-      repos={[
-        {
-          link: '#',
-          name: 'Nome do repositório'
-        }
-      ]}
-    />
-  </div>
-)
+// Esse componente (statefull) irá gerenciar todos os estados dos outros componentes (stateless) que estao abaixo dele
+// Presentational Components, Dumb components, sao componentes apenas de apresentaçao, pode ser dizer que sao os componentes stateless, ele nao gerencia estado
+// Container Components, Smart Components, sao componentes que possuem estados e os gerenciam
+class App extends Component {
+  constructor () {
+    super()
+    this.state = { 
+
+    }
+  }
+
+  render () {
+    return <AppContent />
+  }
+}
 
 export default App
