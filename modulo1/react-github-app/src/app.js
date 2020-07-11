@@ -16,8 +16,10 @@ class App extends Component {
         repos: 12,
         followers: 4,
         following: 23,
-        updated:'2020-07-09T18:53:05Z',
-        created: '2017-03-29T17:19:33Z' 
+        updated: '2020-07-09T18:53:05Z',
+        created: '2017-03-29T17:19:33Z',
+        avatar: 'https://avatars2.githubusercontent.com/u/26774003?v=4',
+        login: 'guilhermeotsu'
       },
       repos: [
         {
@@ -28,7 +30,7 @@ class App extends Component {
       starred: [
         {
           name: 'react-libs',
-          link: '#' 
+          link: '#'
         }
       ]
     }

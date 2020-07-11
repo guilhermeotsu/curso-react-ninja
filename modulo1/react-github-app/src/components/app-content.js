@@ -10,15 +10,7 @@ import Repos from './repos'
 const AppContent = ({ userinfo, repos, starred }) => (
   <div className='app'>
     <Search />
-    {!!userinfo && <UserInfo 
-      username={userinfo.username} 
-      repos={userinfo.repos}
-      followings={userinfo.following}
-      followers={userinfo.followers}
-      created={userinfo.created}
-      updated={userinfo.updated}
-      />}
-
+    {!!userinfo && <UserInfo userinfo={userinfo} />}
     {!!userinfo && <Actions />}
 
     {!!repos.length && (
@@ -40,8 +32,8 @@ const AppContent = ({ userinfo, repos, starred }) => (
 )
 
 AppContent.propType = {
-  userinfo: PropTypes.object.isRequired, 
-  repos: PropTypes.array.isRequired, 
+  userinfo: PropTypes.object.isRequired,
+  repos: PropTypes.array.isRequired,
   starred: PropTypes.array.isRequired
 }
 

@@ -1,24 +1,37 @@
 'use strict'
 
-import React from 'react'
+import React, { PropTypes } from 'react'
 
-const UserInfo = ({ username, repos, followers, followings, created, updated }) => (
+const UserInfo = ({ userinfo }) => (
   <div className='user-info'>
-    <img src='https://avatars2.githubusercontent.com/u/26774003?v=4' />
+    <img src={userinfo.avatar} />
     <h1 className='user-name'>
-      <a href='https://github.com/guilhermeotsu'>{username}</a>
+      <a href={`https://github.com/${userinfo.login}`}>{userinfo.username}</a>
     </h1>
     <ul>
-      <li>Criando em: {created}</li>
-      <li>Ultima atualização: {updated}</li>
+      <li>Criando em: {userinfo.created}</li>
+      <li>Ultima atualização: {userinfo.updated}</li>
     </ul>
 
     <ul className='repos-info'>
-      <li>Quantidade de repositórios: {repos} </li>
-      <li>Seguidores: {followers}</li>
-      <li>Seguindo: {followings}</li>
+      <li>Quantidade de repositórios: {userinfo.repos} </li>
+      <li>Seguidores: {userinfo.followers}</li>
+      <li>Seguindo: {userinfo.followings}</li>
     </ul>
-    </div>
+  </div>
 )
+
+UserInfo.PropTypes = {
+  userinfo: PropTypes.shape({
+    username: PropTypes.string.isRequired,
+    repos: PropTypes.number.isRequired,
+    followers: PropTypes.number.isRequired,
+    followings: PropTypes.number.isRequired,
+    created: PropTypes.instanceOf(Date).isRequired,
+    updated: PropTypes.instanceOf(Date).isRequired,
+    avatar: PropTypes.string.isRequired,
+    login: PropTypes.string.isRequired
+  })
+}
 
 export default UserInfo
