@@ -2,10 +2,11 @@
 
 import React from 'react'
 
-const Actions = () => (
+const Actions = ({ handleClickRepos, handleClickFavs }) => (
   <div className='actions'>
-    <button>Ver repos</button>
-    <button>Ver favs</button>
+    <button onClick={handleClickRepos}>Ver repos</button>
+
+    <button onClick={handleClickFavs}>Ver favs</button>
   </div>
 )
 

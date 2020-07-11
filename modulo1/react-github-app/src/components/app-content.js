@@ -7,26 +7,30 @@ import Actions from './actions'
 import Repos from './repos'
 
 // !! dentro do userinfo esta transformando a prop em booleano
-const AppContent = ({ userinfo, repos, starred, handleSearch }) => (
+const AppContent = ({
+  userinfo,
+  repos,
+  starred,
+  handleSearch,
+  handleClickRepos,
+  handleClickFavs
+}) => (
   <div className='app'>
     <Search handleSearch={handleSearch} />
     {!!userinfo && <UserInfo userinfo={userinfo} />}
-    {!!userinfo && <Actions />}
-
-    {!!repos.length && (
-      <Repos
-        className='repos'
-        title='Repositório'
-        repos={repos}
+    {!!userinfo && (
+      <Actions
+        handleClickRepos={handleClickRepos}
+        handleClickFavs={handleClickFavs}
       />
     )}
 
+    {!!repos.length && (
+      <Repos className='repos' title='Repositório' repos={repos} />
+    )}
+
     {!!starred.length && (
-      <Repos
-        className='starred'
-        title='Favoritos'
-        repos={starred}
-      />
+      <Repos className='starred' title='Favoritos' repos={starred} />
     )}
   </div>
 )

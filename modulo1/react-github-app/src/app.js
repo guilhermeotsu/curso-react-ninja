@@ -16,16 +16,18 @@ class App extends Component {
       repos: [],
       starred: []
     }
+
+    inputvalue: null
   }
 
   handleSearch (e) {
-    const value = e.target.value
+    this.inputvalue = e.target.value
     const key = e.which || e.keyCode
     const ENTERKEY = 13
     if (key === ENTERKEY) {
-      ajax().get(`https://api.github.com/users/${value}`)
-        .then((result) => {
-          console.log(result)
+      ajax()
+        .get(`https://api.github.com/users/${this.inputvalue}`)
+        .then(result => {
           this.setState({
             userinfo: {
               username: result.name,
@@ -42,13 +44,41 @@ class App extends Component {
     }
   }
 
+  handleClickRepos () {
+    ajax()
+      .get(`https://api.github.com/users/${this.inputvalue}/repos`)
+      .then(result => {
+        this.setState({
+          repos: result.map(res => ({
+            name: res.name,
+            link: res.html_url
+          }))
+        })
+      })
+  }
+
+  handleClickFavs () {
+    ajax()
+      .get(`https://api.github.com/users/${this.inputvalue}/starred`)
+      .then(result => {
+        this.setState({
+          starred: result.map(res => ({
+            name: res.name,
+            link: res.html_url
+          }))
+        })
+      })
+  }
+
   render () {
     return (
       <AppContent
         userinfo={this.state.userinfo}
         repos={this.state.repos}
         starred={this.state.starred}
-        handleSearch={(e) => this.handleSearch(e)}
+        handleSearch={e => this.handleSearch(e)}
+        handleClickRepos={() => this.handleClickRepos()}
+        handleClickFavs={() => this.handleClickFavs()}
       />
     )
   }
