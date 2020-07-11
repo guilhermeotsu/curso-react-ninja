@@ -2,23 +2,23 @@
 
 import React from 'react'
 
-const UserInfo = () => (
+const UserInfo = ({ username, repos, followers, followings, created, updated }) => (
   <div className='user-info'>
     <img src='https://avatars2.githubusercontent.com/u/26774003?v=4' />
     <h1 className='user-name'>
-      <a href='https://github.com/guilhermeotsu'>Guilherme Otsu</a>
+      <a href='https://github.com/guilhermeotsu'>{username}</a>
     </h1>
     <ul>
-      <li>Criando em: 2017-03-29T17:19:33Z</li>
-      <li>Ultima atualização: 2020-07-09T18:53:05Z</li>
+      <li>Criando em: {created}</li>
+      <li>Ultima atualização: {updated}</li>
     </ul>
 
     <ul className='repos-info'>
-      <li>Quantidade de repositórios: 17</li>
-      <li>Seguidores: 4</li>
-      <li>Seguindo: 17</li>
+      <li>Quantidade de repositórios: {repos} </li>
+      <li>Seguidores: {followers}</li>
+      <li>Seguindo: {followings}</li>
     </ul>
-  </div>
+    </div>
 )
 
 export default UserInfo
