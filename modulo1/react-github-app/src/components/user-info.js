@@ -16,7 +16,7 @@ const UserInfo = ({ userinfo }) => (
     <ul className='repos-info'>
       <li>Quantidade de repositórios: {userinfo.repos} </li>
       <li>Seguidores: {userinfo.followers}</li>
-      <li>Seguindo: {userinfo.followings}</li>
+      <li>Seguindo: {userinfo.following}</li>
     </ul>
   </div>
 )
@@ -26,7 +26,7 @@ UserInfo.PropTypes = {
     username: PropTypes.string.isRequired,
     repos: PropTypes.number.isRequired,
     followers: PropTypes.number.isRequired,
-    followings: PropTypes.number.isRequired,
+    following: PropTypes.number.isRequired,
     created: PropTypes.instanceOf(Date).isRequired,
     updated: PropTypes.instanceOf(Date).isRequired,
     avatar: PropTypes.string.isRequired,

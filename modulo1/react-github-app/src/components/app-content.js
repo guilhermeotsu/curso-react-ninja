@@ -7,9 +7,9 @@ import Actions from './actions'
 import Repos from './repos'
 
 // !! dentro do userinfo esta transformando a prop em booleano
-const AppContent = ({ userinfo, repos, starred }) => (
+const AppContent = ({ userinfo, repos, starred, handleSearch }) => (
   <div className='app'>
-    <Search />
+    <Search handleSearch={handleSearch} />
     {!!userinfo && <UserInfo userinfo={userinfo} />}
     {!!userinfo && <Actions />}
 
@@ -32,7 +32,7 @@ const AppContent = ({ userinfo, repos, starred }) => (
 )
 
 AppContent.propType = {
-  userinfo: PropTypes.object.isRequired,
+  userinfo: PropTypes.object,
   repos: PropTypes.array.isRequired,
   starred: PropTypes.array.isRequired
 }
