@@ -16,17 +16,21 @@ class App extends Component {
       repos: [],
       starred: []
     }
+  }
 
-    inputvalue: null
+  getGitHubApiUrl (username, type) {
+    const internalUser = username ? `/${username}` : ''
+    const internalType = type ? `/${type}` : ''
+    return `https://api.github.com/users${internalUser}${internalType}`
   }
 
   handleSearch (e) {
-    this.inputvalue = e.target.value
+    const value = e.target.value
     const key = e.which || e.keyCode
     const ENTERKEY = 13
     if (key === ENTERKEY) {
       ajax()
-        .get(`https://api.github.com/users/${this.inputvalue}`)
+        .get(this.getGitHubApiUrl(value))
         .then(result => {
           this.setState({
             userinfo: {
@@ -38,36 +42,31 @@ class App extends Component {
               created: result.created_at,
               avatar: result.avatar_url,
               login: result.login
-            }
+            },
+            repos: [],
+            starred: []
           })
         })
     }
   }
 
-  handleClickRepos () {
-    ajax()
-      .get(`https://api.github.com/users/${this.inputvalue}/repos`)
-      .then(result => {
-        this.setState({
-          repos: result.map(res => ({
-            name: res.name,
-            link: res.html_url
-          }))
+  // handleClick éuma função que retorna outra função, ou seja, estamos passando via Props o retorno de handleClick,
+  // que é outra funçao, já que o é necessario passsar uma função para o AppContent
+  handleClick (type) {
+    return e => {
+      const user = this.state.userinfo.login
+      ajax()
+        .get(this.getGitHubApiUrl(user, type))
+        .then(result => {
+          this.setState({
+            [type]: result.map(res => ({
+              id: res.id,
+              name: res.name,
+              link: res.html_url
+            }))
+          })
         })
-      })
-  }
-
-  handleClickFavs () {
-    ajax()
-      .get(`https://api.github.com/users/${this.inputvalue}/starred`)
-      .then(result => {
-        this.setState({
-          starred: result.map(res => ({
-            name: res.name,
-            link: res.html_url
-          }))
-        })
-      })
+    }
   }
 
   render () {
@@ -77,8 +76,8 @@ class App extends Component {
         repos={this.state.repos}
         starred={this.state.starred}
         handleSearch={e => this.handleSearch(e)}
-        handleClickRepos={() => this.handleClickRepos()}
-        handleClickFavs={() => this.handleClickFavs()}
+        handleClickRepos={this.handleClick('repos')}
+        handleClickFavs={this.handleClick('starred')}
       />
     )
   }
