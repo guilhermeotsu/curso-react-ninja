@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react'
 
+// ref só funciona com statefull components
 class Plugin extends Component {
   constructor () {
     super()
