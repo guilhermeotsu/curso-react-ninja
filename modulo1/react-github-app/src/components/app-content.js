@@ -11,12 +11,14 @@ const AppContent = ({
   userinfo,
   repos,
   starred,
+  isFetching,
   handleSearch,
   handleClickRepos,
   handleClickFavs
 }) => (
   <div className='app'>
-    <Search handleSearch={handleSearch} />
+    <Search handleSearch={handleSearch} isFetching={isFetching} />
+    {isFetching && <div>Carregando...</div>}
     {!!userinfo && <UserInfo userinfo={userinfo} />}
     {!!userinfo && (
       <Actions
