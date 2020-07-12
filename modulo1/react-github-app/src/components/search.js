@@ -14,7 +14,8 @@ const Search = ({ handleSearch, isFetching }) => (
 )
 
 Search.PropTypes = {
-  handleSearch: PropTypes.func.isRequired
+  handleSearch: PropTypes.func.isRequired,
+  isFetching: PropTypes.bool.isRequired
 }
 
 export default Search
