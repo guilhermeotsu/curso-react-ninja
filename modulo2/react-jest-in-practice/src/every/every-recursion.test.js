@@ -1,10 +1,14 @@
 'use strict'
 
 import { expect } from 'chai'
-import every from './every'
+import every from './every-recursion'
 
 it('every deve ser uma função', () => {
   expect(every).to.be.a('function')
+})
+
+it('every([]) deve retornar true', () => {
+  expect(every([])).to.be.true
 })
 
 it('every([1, 2], (item) => item > 0) deve retornar true', () => {
