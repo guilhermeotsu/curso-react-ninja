@@ -1,7 +1,7 @@
 'use strict'
 
 import { expect } from 'chai'
-import filter from './filter'
+import filter from './filter-recursion'
 
 it("filter deve ser uma função", () => {
   expect(filter).to.be.a('function')
@@ -43,7 +43,7 @@ it("filter([]) deve retornar []", () => {
   expect(filter()).to.be.deep.equal([])
 })
 
-it('filter([1, 2, 3, 2, 1, 5], (item, index, array) => index === array.indexOf(item)) deve retonar [1, 2, 3, 5]', () => {
+it('filter([1, 2, 3, 2, 1, 5], (item, index, array) => index === array.indexOf(item)) deve retornar [1, 2, 3, 5]', () => {
   const before = filter([1, 2, 3, 2, 1, 5], (item, index, array) => index === array.indexOf(item))
   expect(before).to.be.deep.equal([1, 2, 3, 5])
 })
