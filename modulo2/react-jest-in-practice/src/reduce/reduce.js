@@ -1,18 +1,7 @@
 'use strict' 
 
-const reduce = (arr, func, initval) => {
-  let acc = initval
-  let arrCp = arr
+import mainReduce from './reduce-main'
 
-  if(initval === undefined) { 
-    acc  = arr[0]
-    arrCp = arr.slice(1)
-  }
-
-  for(let i = 0; i < arrCp.length; i++) {
-    acc = func(acc, arrCp[i], i, arr)
-  }
-  return acc
-}
+const reduce = mainReduce
 
 export default reduce

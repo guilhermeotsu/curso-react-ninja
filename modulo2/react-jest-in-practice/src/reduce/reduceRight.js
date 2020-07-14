@@ -1,7 +1,8 @@
 'use strict'
 
-const reduceRight = () => {
-  
-}
+import mainReduce from './reduce-main'
+import reverse from './../reverse/reverse'
+
+const reduceRight = (arr, ...params) => mainReduce(reverse(arr), ...params)
 
 export default reduceRight

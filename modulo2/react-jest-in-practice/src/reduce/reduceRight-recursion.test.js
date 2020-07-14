@@ -1,7 +1,7 @@
 'use strict'
 
 import { expect } from 'chai'
-import reduceRight from './reduceRight'
+import reduceRight from './reduceRight-recursion'
 
 it('reduceRight deve ser uma funçao', () => {
   expect(reduceRight).to.be.a('function')
