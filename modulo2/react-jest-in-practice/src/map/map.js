@@ -1,8 +1,12 @@
 'use strict'
 
-const map = (arr = [], func) => {
-  if(typeof func !== 'function') {
-    throw new TypeError('func is not a function')
+const map = (arr = [], func) => { 
+  if(!Array.isArray(arr)) {
+    throw new TypeError('Primeira parametro deve ser um array')
+  }
+
+  if(!(typeof func === 'function')) {
+    throw new TypeError('O segundo parametro deve ser uma função')
   }
 
   let newarray = []
