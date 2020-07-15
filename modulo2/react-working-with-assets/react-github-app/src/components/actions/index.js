@@ -1,10 +1,10 @@
 'use strict'
 
 import React, { PropTypes } from 'react'
-import './actions.css'
+import style from './actions.css'
 
 const Actions = ({ handleClickRepos, handleClickFavs }) => (
-  <div className='actions'>
+  <div className={style.actions}>
     <button onClick={handleClickRepos}>Ver repos</button>
 
     <button onClick={handleClickFavs}>Ver favs</button>

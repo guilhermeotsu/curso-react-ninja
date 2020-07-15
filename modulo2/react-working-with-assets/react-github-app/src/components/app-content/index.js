@@ -5,7 +5,7 @@ import Search from './../search'
 import UserInfo from './../user-info'
 import Actions from './../actions'
 import Repos from './../repos'
-import './app-content.css'
+import style from './app-content.css'
 
 // !! dentro do userinfo esta transformando a prop em booleano
 const AppContent = ({
@@ -17,7 +17,7 @@ const AppContent = ({
   handleClickRepos,
   handleClickFavs
 }) => (
-  <div className='app'>
+  <div className={style.app}>
     <Search handleSearch={handleSearch} isFetching={isFetching} />
     {isFetching && <div>Carregando...</div>}
     {!!userinfo && <UserInfo userinfo={userinfo} />}
