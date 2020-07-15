@@ -1,7 +1,7 @@
 'use strict'
 
 import React, { PropTypes } from 'react'
-import style from'./repos.css'
+import style from './repos.css'
 
 const Repos = ({ className, title, repos }) => (
   <div className={style[`${className}`]}>

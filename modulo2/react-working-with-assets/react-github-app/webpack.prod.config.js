@@ -26,22 +26,22 @@ module.exports = validate({
 
     new webpack.DefinePlugin({
       'process.env': {
-        'NODE_ENV': '"production"'
+        NODE_ENV: '"production"'
       }
     }),
 
     new webpack.optimize.UglifyJsPlugin({
-      compress: { warnings: false } 
+      compress: { warnings: false }
     }),
 
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
 
     new HtmlPlugin({
-      title: "Github App",
+      title: 'Github App',
       inject: false,
       template: path.join(__dirname, 'src', 'html', 'template.html')
-    })  
+    })
   ],
 
   module: {
@@ -65,7 +65,7 @@ module.exports = validate({
         exclude: /node_modules|(search|style)\.css/,
         include: /src/,
         loader: styles.extract('style', 'css')
-      }, 
+      },
       {
         test: /(search|style)\.css$/,
         exclude: /node_modules/,

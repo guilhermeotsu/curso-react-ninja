@@ -29,9 +29,9 @@ module.exports = validate({
     new DashboardPlugin(),
     new ExtractTextPlugin('[name]-[hash].css'),
     new HtmlPlugin({
-      title: "Github App",
+      title: 'Github App',
       template: path.join(__dirname, 'src', 'html', 'template-dev.html')
-    })  
+    })
   ],
 
   module: {
