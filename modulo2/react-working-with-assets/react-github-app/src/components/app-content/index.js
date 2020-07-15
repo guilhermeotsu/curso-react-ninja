@@ -1,10 +1,11 @@
 'use strict'
 
 import React, { PropTypes } from 'react'
-import Search from './search'
-import UserInfo from './user-info'
-import Actions from './actions'
-import Repos from './repos'
+import Search from './../search'
+import UserInfo from './../user-info'
+import Actions from './../actions'
+import Repos from './../repos'
+import './app-content.css'
 
 // !! dentro do userinfo esta transformando a prop em booleano
 const AppContent = ({
