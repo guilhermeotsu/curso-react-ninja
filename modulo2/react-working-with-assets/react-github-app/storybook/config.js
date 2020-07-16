@@ -1,5 +1,8 @@
 import { configure } from '@kadira/storybook'
 
+import '../src/css/style.css'
+import '../src/components/app-content/app-content.css'
+
 // Adicionando um contexto de importaçao de arquivos,
 // procutando dentro do src/components,
 // true -> procurando tambem nos subdiretorios

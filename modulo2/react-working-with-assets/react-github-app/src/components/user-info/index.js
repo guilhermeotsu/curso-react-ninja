@@ -6,7 +6,7 @@ import style from './user-info.css'
 const UserInfo = ({ userinfo }) => (
   <div className={style['user-info']}>
     <img src={userinfo.avatar} />
-    <h1 className='user-name'>
+    <h1 className={style['user-name']}>
       <a href={`https://github.com/${userinfo.login}`}>{userinfo.username}</a>
     </h1>
     <ul>
