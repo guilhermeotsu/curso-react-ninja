@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Pegando o valor lá do htmlPlugin dentro do arquivo de config de config do webpack -->
+    <title><%= htmlWebpackPlugin.options.title %></title>
+
+    <!-- Adicionando o Critial Render Path da aplicação -->
+    <style>
+      <%= compilation.assets['crp.css'].source() %>
+    </style>
+  </head>
+  <body>
+    <div data-js="app"></div>
+
+    <% htmlWebpackPlugin.files.js.forEach((jsFile) => { %>
+    <script async src="<%= jsFile %>"></script>
+    <% }) %> <% htmlWebpackPlugin.files.css.forEach((cssFile) => { %> <% if
+    (cssFile !== 'crp.css') { %>
+    <link rel="stylesheet" href="<%= cssFile %>" />
+    <% } %> <% }) %>
+  </body>
+</html>

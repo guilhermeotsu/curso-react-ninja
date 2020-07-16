@@ -3,18 +3,28 @@
     "start": "webpack-dashboard -- node server.js",
     "build": "cross-env NODE_ENV=production webpack --progress --config webpack.prod.config -p",
     "storybook": "start-storybook -p 6006 -c storybook",
+    "test": "jest --coverage",
+    "test:watch": "yarn test -- --watch",
+    "lint": "standard --verbose | snazzy",
+    "lint:watch": "gulp",
+    "lint:fix": "standard --fix",
     "build-storybook": "build-storybook -c storybook"
   },
   "devDependencies": {
+    "@kadira/storybook": "^2.21.0",
     "babel-core": "^6.26.0",
+    "babel-jest": "15",
     "babel-loader": "^6.4.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "chai": "^4.2.0",
     "cross-env": "^7.0.2",
     "css-loader": "^0.28.11",
     "extract-text-webpack-plugin": "^1.0.1",
+    "gulp": "^3.9.1",
     "html-webpack-plugin": "^2.30.1",
+    "jest-cli": "15",
     "react-hot-loader": "^3.0.0-beta.2",
     "standard": "^11.0.1",
     "standard-loader": "^4.0.0",
@@ -22,12 +32,12 @@
     "webpack": "^1.15.0",
     "webpack-dashboard": "^3.2.0",
     "webpack-dev-server": "^1.16.5",
-    "webpack-validator": "^3.0.0",
-    "@kadira/storybook": "^2.21.0"
+    "webpack-validator": "^3.0.0"
   },
   "dependencies": {
     "@fdaciuk/ajax": "^3.0.4",
     "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "react-dom": "^15.4.2",
+    "snazzy": "^8.0.0"
   }
 }
