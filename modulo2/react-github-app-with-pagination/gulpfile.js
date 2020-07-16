@@ -1,13 +1,13 @@
 'use strict'
 
-const gulp = require('gilp')
+const gulp = require('gulp')
 const { spawn } = require('child_process')
 
 gulp.task('lint', (cb) => {
-  const cmd = spawn('yarn', ['lint'], { stdio: 'inherit'})
+  const cmd = spawn('yarn', ['lint'], { stdio: 'inherit' })
   cmd.on('close', () => cb())
 })
 
-gulp.task('default', () => {
-  gulp.watch('src/**/*.js', ['lint'])
+gulp.task('default', function () {
+  gulp.watch('src/**/*.js', gulp.series('lint'))
 })
