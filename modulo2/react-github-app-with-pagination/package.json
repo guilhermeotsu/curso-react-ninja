@@ -1,7 +1,7 @@
 {
   "scripts": {
     "start": "webpack-dashboard -- node server.js",
-    "build": "cross-env NODE_ENV=production webpack --progress --config webpack.prod.config -p",
+    "build": "cross-env NODE_ENV=production webpack --progress --config webpack/prod.config -p",
     "storybook": "start-storybook -p 6006 -c storybook",
     "test": "jest --coverage",
     "test:watch": "yarn test -- --watch",

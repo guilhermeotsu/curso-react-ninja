@@ -3,6 +3,8 @@
 const webpackConfig = require('@kadira/storybook/dist/server/config/defaults/webpack.config')
 const path = require('path')
 
+const common = require('./../webpack/common')
+
 module.exports = function (config, env) {
   const newConfig = webpackConfig(config, env)
 
@@ -22,17 +24,9 @@ module.exports = function (config, env) {
     return loader
   })
 
-  newConfig.module.preLoaders = (newConfig.module.preLoaders || []).concat({
-    test: /\.js$/,
-    exclude: /node_modules/,
-    loader: 'standard'
-  })
+  newConfig.module.preLoaders = (newConfig.module.preLoaders || []).concat(common.standardPreLoader) 
 
-  newConfig.resolve.alias = Object.assign({}, newConfig.resolve.alias, {
-    src: path.join(__dirname, '..', 'src'),
-    components: path.join(__dirname, '..', 'src', 'components'),
-    utils: path.join(__dirname, '..', 'src', 'utils')
-  })
+  newConfig.resolve = common.resolve
 
   return newConfig
 }

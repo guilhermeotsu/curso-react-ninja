@@ -4,6 +4,8 @@ const path = require('path')
 const webpack = require('webpack')
 const validate = require('webpack-validator')
 
+const common = require('./common')
+
 const HtmlPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
@@ -11,12 +13,9 @@ const critialRenderingPath = new ExtractTextPlugin('crp.css')
 const styles = new ExtractTextPlugin('[name]-[hash].css')
 
 module.exports = validate({
-  entry: path.join(__dirname, 'src', 'index'),
+  entry: common.entry, 
 
-  output: {
-    path: path.join(__dirname, 'dist'),
-    filename: '[name]-[hash].js'
-  },
+  output: common.output,
 
   plugins: [
     critialRenderingPath,
@@ -29,6 +28,8 @@ module.exports = validate({
         NODE_ENV: '"production"'
       }
     }),
+    
+    new HtmlPlugin(common.htmlPluginConfig('template.html')),
 
     new webpack.optimize.UglifyJsPlugin({
       compress: { warnings: false }
@@ -37,29 +38,11 @@ module.exports = validate({
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
 
-    new HtmlPlugin({
-      title: 'Github App',
-      inject: false,
-      template: path.join(__dirname, 'src', 'html', 'template.html')
-    })
   ],
 
   module: {
-    preLoaders: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        include: /src/,
-        loader: 'standard'
-      }
-    ],
-    loaders: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        include: /src/,
-        loader: 'babel'
-      },
+    preLoaders: [common.standardPreLoader],
+    loaders: [common.jsLoader, 
       {
         test: /\.css$/,
         exclude: /node_modules|(search|style)\.css/,
@@ -73,5 +56,7 @@ module.exports = validate({
         loader: critialRenderingPath.extract('style', 'css')
       }
     ]
-  }
+  },
+
+  resolve: common.resolve
 })
