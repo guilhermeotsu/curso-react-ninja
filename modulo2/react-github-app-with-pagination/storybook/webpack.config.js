@@ -9,12 +9,12 @@ module.exports = function (config, env) {
   const newConfig = webpackConfig(config, env)
 
   // Configurando para que o Storybook reconheça Module CSS
-  newConfig.module.loaders = (newConfig.module.loaders || []).map((loader) => {
+  newConfig.module.loaders = (newConfig.module.loaders || []).map(loader => {
     // Loader de css (fazer funcionar com Module CSS)
     if (loader.test.test('actions.css')) {
       return {
         ...loader,
-        loaders: loader.loaders.map((internalLoader) => {
+        loaders: loader.loaders.map(internalLoader => {
           return internalLoader.includes('/css-loader')
             ? `${internalLoader}&modules`
             : internalLoader
@@ -24,7 +24,9 @@ module.exports = function (config, env) {
     return loader
   })
 
-  newConfig.module.preLoaders = (newConfig.module.preLoaders || []).concat(common.standardPreLoader) 
+  newConfig.module.preLoaders = (newConfig.module.preLoaders || []).concat(
+    common.standardPreLoader
+  )
 
   newConfig.resolve = common.resolve
 

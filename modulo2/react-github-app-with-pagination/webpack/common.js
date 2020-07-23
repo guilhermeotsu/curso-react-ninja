@@ -10,14 +10,14 @@ module.exports = {
     filename: '[name]-[hash].js'
   },
 
-  htmlPluginConfig: (template) => {
+  htmlPluginConfig: template => {
     return {
       title: 'Github App',
       template: path.join(__dirname, '..', 'src', 'html', template)
     }
   },
 
-  standardPreLoader:{
+  standardPreLoader: {
     test: /\.js$/,
     exclude: /node_modules/,
     include: /src/,

@@ -13,7 +13,7 @@ const critialRenderingPath = new ExtractTextPlugin('crp.css')
 const styles = new ExtractTextPlugin('[name]-[hash].css')
 
 module.exports = validate({
-  entry: common.entry, 
+  entry: common.entry,
 
   output: common.output,
 
@@ -28,7 +28,7 @@ module.exports = validate({
         NODE_ENV: '"production"'
       }
     }),
-    
+
     new HtmlPlugin(common.htmlPluginConfig('template.html')),
 
     new webpack.optimize.UglifyJsPlugin({
@@ -36,13 +36,13 @@ module.exports = validate({
     }),
 
     new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.OccurrenceOrderPlugin(),
-
+    new webpack.optimize.OccurrenceOrderPlugin()
   ],
 
   module: {
     preLoaders: [common.standardPreLoader],
-    loaders: [common.jsLoader, 
+    loaders: [
+      common.jsLoader,
       {
         test: /\.css$/,
         exclude: /node_modules|(search|style)\.css/,

@@ -41,6 +41,10 @@
     "snazzy": "^8.0.0"
   },
   "standard": {
-    "globals": ["test", "it", "describe"]
+    "globals": [
+      "test",
+      "it",
+      "describe"
+    ]
   }
 }
