@@ -1,0 +1,37 @@
+@charset 'utf-8';
+
+@import '~highlight.js/styles/dracula.css';
+@import '~normalize.css';
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+.container { 
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.container
+textarea {
+  width: 50%;
+  resize: none;
+  padding: 10px
+}
+
+.container div { 
+  width: 50%;
+  padding: 10px
+}
+
+pre { 
+  background-color: #252B2E;
+  padding: 15px 
+}

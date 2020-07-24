@@ -5,7 +5,9 @@ const { join } = require('path')
 const paths = {
   root: join(__dirname, '..'),
   src: join(__dirname, '..', 'src'),
-  dist: join(__dirname, '..', 'dist')
+  dist: join(__dirname, '..', 'dist'),
+  normalizeCss: join(__dirname, '..', 'node_modules', 'normalize.css'),
+  highligthJs: join(__dirname, '..', 'node_modules', 'highlight.js', 'styles')
 }
 
 module.exports = {
@@ -22,7 +24,7 @@ module.exports = {
   },
 
   htmlPluginConfig: {
-    title: 'My app',
+    title: 'Markdown Editor',
     template: join(paths.src, 'html', 'template.html')
   },
 
@@ -58,8 +60,9 @@ module.exports = {
 
   cssLoader: {
     test: /\.css$/,
-    include: paths.src,
+    include: [paths.src, paths.normalizeCss, paths.highligthJs],
     use: ['style-loader', 'css-loader']
+
   },
 
   fileLoader: {
