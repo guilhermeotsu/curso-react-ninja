@@ -43,26 +43,31 @@ module.exports = {
   jsLoader: {
     test: /\.js$/,
     include: paths.src,
-    use: ['react-hot-loader/webpack', {
-      loader: 'babel-loader',
-      options: {
-        presets: [['env', { modules: false }], 'stage-0', 'react'],
-        plugins: [
-          ['transform-runtime', {
-            helpers: false,
-            polyfill: false,
-            regenerator: true
-          }]
-        ]
+    use: [
+      'react-hot-loader/webpack',
+      {
+        loader: 'babel-loader',
+        options: {
+          presets: [['env', { modules: false }], 'stage-0', 'react'],
+          plugins: [
+            [
+              'transform-runtime',
+              {
+                helpers: false,
+                polyfill: false,
+                regenerator: true
+              }
+            ]
+          ]
+        }
       }
-    }]
+    ]
   },
 
   cssLoader: {
     test: /\.css$/,
     include: [paths.src, paths.normalizeCss, paths.highligthJs],
     use: ['style-loader', 'css-loader']
-
   },
 
   fileLoader: {

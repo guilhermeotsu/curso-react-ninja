@@ -11,7 +11,7 @@
   box-sizing: inherit;
 }
 
-.container { 
+.container {
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -19,19 +19,18 @@
   justify-content: space-between;
 }
 
-.container
-textarea {
+.container textarea {
   width: 50%;
   resize: none;
-  padding: 10px
+  padding: 10px;
 }
 
-.container div { 
+.container div {
   width: 50%;
-  padding: 10px
+  padding: 10px;
 }
 
-pre { 
-  background-color: #252B2E;
-  padding: 15px 
+pre {
+  background-color: #252b2e;
+  padding: 15px;
 }

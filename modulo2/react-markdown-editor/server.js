@@ -10,7 +10,7 @@ new WebpackDevServer(webpack(config), {
   historyApiFallback: true,
   overlay: true,
   stats: { colors: true }
-}).listen(3000, (err) => {
+}).listen(3000, err => {
   if (err) {
     return console.log(err)
   }
