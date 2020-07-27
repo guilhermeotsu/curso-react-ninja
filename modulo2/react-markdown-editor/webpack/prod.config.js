@@ -16,6 +16,8 @@ module.exports = {
   output: common.output,
 
   plugins: [
+    new BundleAnalyzerPlugin(),
+
     new CleanPlugin(['dist'], {
       root: common.paths.root
     }),

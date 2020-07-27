@@ -3,19 +3,23 @@
 import React, { Component } from 'react'
 import Mardown from 'components/markdown-editor'
 import marked from 'marked'
-import highlightjs from 'highlight.js'
 
 import './css/style.css'
 
-marked.setOptions({
-  highlight: (code) => {
-    return highlightjs.highlightAuto(code).value
-  }
+import('highlight.js').then((hljs) => {
+  marked.setOptions({
+    highlight: (code, lang) => {
+      if(lang && hljs.getLanguage(lang, code)) {
+        return hljs.highlight(lang, code).value
+      }
+      return hljs.highlightAuto(code).value
+    }
+  })
 })
 
 class App extends Component {
   constructor () {
-    super ()
+    super()
     this.state = {
       value: ''
     }
@@ -25,7 +29,6 @@ class App extends Component {
         value: e.target.value
       })
     }
-    
     this.getMarkup = () => {
       return {
         __html: marked(this.state.value)
