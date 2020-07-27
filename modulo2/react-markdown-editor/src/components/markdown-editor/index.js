@@ -1,18 +1,18 @@
 'use strict'
 
 import React, { PropTypes } from 'react'
-import Header from 'components/markdown-header'
+import Header from './header'
 
 const Markdown = ({
   value,
-  isSaving,
   handleChange,
-  handleRemove,
-  getMarkup
+  getMarkup,
+  textareaRef,
+  ...props
 }) => (
   <div className='container'>
-    <Header isSaving={isSaving} handleRemove={handleRemove} />
-    <textarea value={value} onChange={handleChange} autoFocus />
+    <Header {...props} />
+    <textarea value={value} onChange={handleChange} autoFocus ref={textareaRef} />
     <div dangerouslySetInnerHTML={getMarkup()} />
   </div>
 )
@@ -20,7 +20,8 @@ const Markdown = ({
 Markdown.propTypes = {
   value: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
-  getMarkup: PropTypes.func.isRequired
+  getMarkup: PropTypes.func.isRequired,
+  textareaRef: PropTypes.func.isRequired
 }
 
 export default Markdown

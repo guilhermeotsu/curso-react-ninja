@@ -51,6 +51,16 @@ class App extends Component {
     this.handleRemove = () => {
       localStorage.removeItem('md')
     }
+
+    this.handleCreate = () => {
+      this.setState({ value: '' })
+      this.textarea.focus()
+    }
+
+    // Referencia do textArea para manipular o foco dele ao clicar no novo arquivo
+    this.textareaRef = (node) => {
+      this.textarea = node
+    }
   }
 
   componentDidMount () {
@@ -74,7 +84,9 @@ class App extends Component {
         isSaving={this.state.isSaving}
         handleChange={this.handleChange}
         handleRemove={this.handleRemove}
+        handleCreate={this.handleCreate}
         getMarkup={this.getMarkup}
+        textareaRef={this.textareaRef}
       />
     )
   }
