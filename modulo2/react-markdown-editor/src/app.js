@@ -21,12 +21,14 @@ class App extends Component {
   constructor () {
     super()
     this.state = {
-      value: ''
+      value: '',
+      isSaving: false
     }
 
     this.handleChange = (e) => {
       this.setState({
-        value: e.target.value
+        value: e.target.value,
+        isSaving: true
       })
     }
     this.getMarkup = () => {
@@ -34,19 +36,34 @@ class App extends Component {
         __html: marked(this.state.value)
       }
     }
+    this.handleSave = () => {
+      const value = this.state.value
+      localStorage.setItem('md', value)
+      this.setState({
+        isSaving: false
+      })
+    }
   }
 
-  componentDidMount() {
+  componentDidMount () {
     const value = localStorage.getItem('md')
-    this.setState({
-      value
-    })
+    this.setState({ value })
+  }
+
+  componentDidUpdate () { 
+    clearInterval(this.timer)
+    this.timer = setTimeout(this.handleSave, 500)
+  }
+
+  componentWillUnmount () {
+    clearInterval(this.timer)
   }
 
   render () {
     return (
       <Mardown
         value={this.state.value}
+        isSaving={this.state.isSaving}
         handleChange={this.handleChange}
         getMarkup={this.getMarkup}
       />
