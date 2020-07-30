@@ -9,10 +9,10 @@ const MarkdownHeader = ({ isSaving, handleRemove, handleCreate }) => (
       <p>{isSaving ? 'Salvando...' : 'Salvo!'}</p>
     )} 
 
-    <Button onClick={handleCreate}>
+    <Button onClick={handleCreate} kind={'success'} >
       Criar novo
     </Button>
-    <Button onClick={handleRemove}>
+    <Button onClick={handleRemove} kind={'danger'} >
       Remover
     </Button>
   </header>

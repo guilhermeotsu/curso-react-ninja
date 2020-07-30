@@ -12,8 +12,10 @@ const Markdown = ({
 }) => (
   <div className='container'>
     <Header {...props} />
-    <textarea value={value} onChange={handleChange} autoFocus ref={textareaRef} />
-    <div dangerouslySetInnerHTML={getMarkup()} />
+    <div className='editor'>
+      <textarea value={value} onChange={handleChange} autoFocus ref={textareaRef} />  
+      <div dangerouslySetInnerHTML={getMarkup()} />
+    </div>
   </div>
 )
 

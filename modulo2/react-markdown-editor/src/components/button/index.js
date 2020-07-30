@@ -1,9 +1,10 @@
 'use strict'
 
 import React, { PropTypes } from 'react'
+import './style.css'
 
-const Button = ({ onClick, children }) => (
-  <button onClick={onClick}>
+const Button = ({ onClick, children, kind }) => (
+  <button className={`button ${kind}`} onClick={onClick}>
     {children}
   </button>
 )

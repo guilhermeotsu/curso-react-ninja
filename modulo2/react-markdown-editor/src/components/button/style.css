@@ -1,0 +1,33 @@
+.button { 
+  height: 95%;
+  width: 7%;
+  border: none;
+  line-height: 95%;
+  border-radius: 8px;
+  font-size: 15px;
+  font-family: sans-serif;
+  color: #fff;
+  margin: 0 0 0 5px;
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+.danger {
+  background-color: #EA3A3A;
+}
+
+.button
+.danger:hover { 
+  background-color: #bd1c1c;
+}
+ 
+.success { 
+  background-color: #24CCA7;
+}
+
+.button 
+.success:hover { 
+ background-color: #00a835;
+}
