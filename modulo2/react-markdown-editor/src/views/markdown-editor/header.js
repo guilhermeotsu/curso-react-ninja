@@ -2,12 +2,11 @@
 
 import React, { PropTypes } from 'react'
 import Button from 'components/button'
+import SaveMessage from 'components/save-message'
 
 const MarkdownHeader = ({ isSaving, handleRemove, handleCreate }) => (
   <header>
-    {isSaving !== null && (
-      <p>{isSaving ? 'Salvando...' : 'Salvo!'}</p>
-    )} 
+    <SaveMessage isSaving={isSaving} />
 
     <Button onClick={handleCreate} kind={'success'} >
       Criar novo
@@ -19,7 +18,6 @@ const MarkdownHeader = ({ isSaving, handleRemove, handleCreate }) => (
 )
 
 MarkdownHeader.propTypes = {
-  isSaving: PropTypes.bool,
   handleRemove: PropTypes.func.isRequired,
   handleCreate: PropTypes.func.isRequired
 }
