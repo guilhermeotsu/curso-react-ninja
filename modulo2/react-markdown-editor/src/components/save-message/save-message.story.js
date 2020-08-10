@@ -21,5 +21,5 @@ stories.add('with isSaving === false', () => (
 ))
 
 stories.add('with isSaving === true', () => (
-  <SaveMessage isSaving={true} />
+  <SaveMessage isSaving />
 ))

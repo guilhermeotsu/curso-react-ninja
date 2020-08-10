@@ -1,6 +1,7 @@
 'use strict'
 
-import React, { PropTypes } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import './style.css'
 
 const Button = ({ onClick, children, kind }) => (
@@ -11,7 +12,8 @@ const Button = ({ onClick, children, kind }) => (
 
 Button.propTypes = {
   onClick: PropTypes.func.isRequired,
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
+  kind: PropTypes.oneOf(['success', 'danger'])
 }
 
 export default Button

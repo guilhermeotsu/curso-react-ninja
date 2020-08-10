@@ -3,6 +3,7 @@
 import React, { Component } from 'react'
 import Mardown from 'views/markdown-editor'
 import marked from 'marked'
+import { v4 } from 'node-uuid'
 
 import './css/style.css'
 
@@ -20,10 +21,17 @@ import('highlight.js').then(hljs => {
 class App extends Component {
   constructor () {
     super()
-    this.state = {
+
+    this.clearState = () => ({
       value: '',
+      id: v4()
+    })
+
+    this.state = {
+      ...this.clearState(),
       isSaving: null
     }
+
 
     this.handleChange = e => {
       this.setState({
@@ -41,31 +49,31 @@ class App extends Component {
     this.handleSave = () => {
       if(this.state.isSaving) {
         const value = this.state.value
-        localStorage.setItem('md', value)
+        localStorage.setItem(this.state.id, value)
         this.setState({
           isSaving: false
         })
       }
     }
+
+    this.createNew = () => {
+      this.setState(this.clearState())
+      this.textarea.focus()
+    }
     
     this.handleRemove = () => {
-      localStorage.removeItem('md')
+      localStorage.removeItem(this.state.id)
+      this.createNew()
     }
 
     this.handleCreate = () => {
-      this.setState({ value: '' })
-      this.textarea.focus()
+      this.createNew()
     }
 
     // Referencia do textArea para manipular o foco dele ao clicar no novo arquivo
     this.textareaRef = (node) => {
       this.textarea = node
     }
-  }
-
-  componentDidMount () {
-    const value = localStorage.getItem('md')
-    this.setState({ value: value || '' })
   }
 
   componentDidUpdate () {
