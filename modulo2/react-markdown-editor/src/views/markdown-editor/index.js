@@ -3,18 +3,22 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Header from './header'
+import Files from './files'
 
 const Markdown = ({
   value,
   handleChange,
   getMarkup,
   textareaRef,
+  storageFiles,
+  handleOpenFile,
   ...props
 }) => (
   <div className='container'>
     <Header {...props} />
+    <Files files={storageFiles} handleOpenFile={handleOpenFile} />
     <div className='editor'>
-      <textarea value={value} onChange={handleChange} autoFocus ref={textareaRef} />  
+      <textarea value={value} onChange={handleChange} autoFocus ref={textareaRef} />
       <div dangerouslySetInnerHTML={getMarkup()} />
     </div>
   </div>

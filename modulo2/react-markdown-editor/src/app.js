@@ -1,7 +1,7 @@
 'use strict'
 
 import React, { Component } from 'react'
-import Mardown from 'views/markdown-editor'
+import Markdown from 'views/markdown-editor'
 import marked from 'marked'
 import { v4 } from 'node-uuid'
 
@@ -29,7 +29,9 @@ class App extends Component {
 
     this.state = {
       ...this.clearState(),
-      isSaving: null
+      isSaving: null,
+      title: '',
+      files: {}
     }
 
 
@@ -48,10 +50,17 @@ class App extends Component {
     
     this.handleSave = () => {
       if(this.state.isSaving) {
-        const value = this.state.value
-        localStorage.setItem(this.state.id, value)
+        const newFile = {
+          title: this.state.title || 'no title',
+          content: this.state.value
+        }
+        localStorage.setItem(this.state.id, JSON.stringify(newFile))
         this.setState({
-          isSaving: false
+          isSaving: false,
+          files: {
+            ...this.state.files,
+            [this.state.id]: newFile
+          }
         })
       }
     }
@@ -60,9 +69,17 @@ class App extends Component {
       this.setState(this.clearState())
       this.textarea.focus()
     }
-    
+  
     this.handleRemove = () => {
       localStorage.removeItem(this.state.id)
+      let files = Object.keys(this.state.files).reduce((acc, fileId) => {
+        return fileId === this.state.id ? acc : {
+          ...acc,
+          [fileId]: this.state.files[filesId]
+        }
+      }, {})
+
+      this.setState({ files })
       this.createNew()
     }
 
@@ -74,6 +91,26 @@ class App extends Component {
     this.textareaRef = (node) => {
       this.textarea = node
     }
+
+    this.handleOpenFile = (key) => () => {
+      this.setState({
+        title: this.state.files[key].title,
+        id: key,
+        value: this.state.files[key].content
+      })
+    }
+  }
+  
+  componentDidMount () {
+    const files = Object.keys(localStorage)
+    this.setState({ 
+      files: files.filter(id => id.match(/^\w{8}-\w{4}-\w{4}-\w{4}-\w{12}$/)).reduce((acc, fileId) => (
+        {
+          ...acc,
+          [fileId]: JSON.parse(localStorage.getItem(fileId))
+        }
+      ), {})
+    })
   }
 
   componentDidUpdate () {
@@ -87,7 +124,7 @@ class App extends Component {
 
   render () {
     return (
-      <Mardown
+      <Markdown
         value={this.state.value}
         isSaving={this.state.isSaving}
         handleChange={this.handleChange}
@@ -95,6 +132,9 @@ class App extends Component {
         handleCreate={this.handleCreate}
         getMarkup={this.getMarkup}
         textareaRef={this.textareaRef}
+        storageFiles={this.state.files}
+        handleOpenFile={this.handleOpenFile}
+        title={this.state.title}
       />
     )
   }
